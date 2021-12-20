@@ -1,0 +1,50 @@
+[
+  {
+    "role_name": ["partner_manager",""],
+    "navItems": [
+      {
+        "itemId": 1,
+        "itemName": "Dashboard",
+        "itemIcon": "DashboardIcon",
+        "itemRoute": "/app/partner/",
+        "childs": []
+      },
+      {
+        "itemId": 2,
+        "itemName": "User Management",
+        "itemIcon": "SupervisorAccountIcon",
+        "itemRoute": "/app/portal_admin/all_users",
+        "childs": [
+          {
+            "itemId": 2.1,
+            "itemName": "Helpdesk Users",
+            "itemIcon": "AccountCircleIcon",
+            "itemRoute": "/app/portal_admin/helpdesk_users",
+            "childs": []
+          },
+          {
+            "itemId": 2.2,
+            "itemName": "L1 Approvers",
+            "itemIcon": "AccountCircleIcon",
+            "itemRoute": "/app/portal_admin/l1_approvers",
+            "childs": []
+          }
+        ]
+      },
+      {
+        "itemId": 3,
+        "itemName": "Profile Management",
+        "itemIcon": "AccountCircleIcon",
+        "itemRoute": "/app/portal_admin/manage_profile",
+        "childs": []
+      },
+      {
+        "itemId": 4,
+        "itemName": "Knowledge & Support",
+        "itemIcon": "HelpIcon",
+        "itemRoute": "/app/support",
+        "childs": []
+      }
+    ]
+  }
+]

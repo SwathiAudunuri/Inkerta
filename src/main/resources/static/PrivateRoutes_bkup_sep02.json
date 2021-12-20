@@ -1,0 +1,682 @@
+{
+	"links": {
+		"invoice": [
+			{
+				"path": "/app/vendor/invoice",
+				"roles": [
+					"customer_user",
+					"customer_admin",
+					"customer_user",
+					"vendor_admin"
+				]
+			},
+			{
+				"path": "/app/invoice/dashboards/admin",
+				"roles": [
+					"vendor_admin",
+					"customer_admin"
+				]
+			},
+			{
+				"path": "/app/invoice/dashboards/user",
+				"roles": [
+					"customer_user",
+					"customer_user"
+				]
+			}
+		],
+		"recipients": [
+			{
+				"path": "/app/recipients",
+				"roles": [
+					"customer_admin",
+					"vendor_admin"
+				]
+			}
+		],
+		"knowledge_support": [
+			{
+				"path": "/app/knowledge_support",
+				"roles": [
+					"*"
+				]
+			}
+		],
+		"partner_details": [
+			{
+				"path": "/app/partner/invitations",
+				"roles": [
+					"partner_admin"
+				]
+			},
+			{
+				"path": "/app/vendor_invitations",
+				"roles": [
+					"vendor_admin"
+				]
+			},
+			{
+				"path": "/app/customer_invitations",
+				"roles": [
+					"customer_admin"
+				]
+			}
+		]
+	},
+	"actions": {
+		"partner_approver": [
+			{
+				"path": "/app/partner_invitations",
+				"allowed_actions": [
+					"Invite Partner",
+					"Edit Partner"
+				]
+			}
+		]
+	},
+	"role_display_names": [
+		{
+			"name": "customer_user",
+			"desc": "Customer user "
+		},
+		{
+			"name": "customer_admin",
+			"desc": "Customer admin "
+		},
+		{
+			"name": "vendor_admin",
+			"desc": "Vendor admin "
+		},
+		{
+			"name": "vendor_user",
+			"desc": "Vendor User "
+		},
+		{
+			"name": "partner_manager",
+			"desc": "Partner User "
+		},
+		{
+			"name": "partner_approver",
+			"desc": "Partner Approver "
+		}
+	],
+	"navigations": {
+		"partner_manager": [
+		
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/partner_manager/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/partner_manager/dashboard"
+					},
+					{
+						"itemName": "Paybles",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/partner_manager/paybles"
+					}
+				]
+			},{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/partner_manager/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/partner_manager/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/partner_manager/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Partners",
+				"itemIcon": "BusinessOutlinedIcon",
+				"itemRoute": "/app/partner_manager/partners",
+				"childs": []
+			},
+			{
+				"itemName": "Enquires",
+				"itemIcon": "HelpOutlineOutlinedIcon",
+				"itemRoute": "/app/partner_manager/enquires",
+				"childs": []
+			},
+			{
+				"itemName": "Knowledge",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/partner_manager/knowledge",
+				"childs": []
+			}
+		],
+		"customer_manager": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_manager/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_manager/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_manager/dashboard/historical_analysis"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_manager/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_manager/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_manager/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/customer_manager/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_manager/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_manager/invoice_queries"
+					}
+				]
+			},
+			
+				{
+				"itemName": "Admin",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/customer_manager/admin",
+				"childs": [
+					{
+						"itemName": "Users",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_manager/users"
+					},
+					{
+						"itemName": "Profile",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_manager/profile"
+					}
+				]
+			},			
+			
+			
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/customer_manager/FAQs",
+				"childs": []
+			}
+			
+		],
+		"customer_admin": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_admin/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_admin/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_admin/dashboard/historical_analysis"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_admin/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_admin/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_admin/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/customer_admin/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_admin/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_admin/invoice_queries"
+					}
+				]
+			},
+			{
+				"itemName": "Recipients",
+				"itemIcon": "AccountTreeOutlinedIcon",
+				"itemRoute": "/app/customer_admin/recipients",
+				"childs": []
+			},
+			{
+				"itemName": "Product Catalogue",
+				"itemIcon": "AccountTreeOutlinedIcon",
+				"itemRoute": "/app/customer_admin/product_catalogue",
+				"childs": []
+			},
+			{
+				"itemName": "User Management",
+				"itemIcon": "PeopleAltOutlinedIcon",
+				"itemRoute": "/app/customer_admin/users",
+				"childs": []
+			},
+			{
+				"itemName": "Routing Details",
+				"itemIcon": "AccountBoxOutlinedIcon",
+				"itemRoute": "/app/customer_admin/routing_details",
+				"childs": []
+			},
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/customer_admin/FAQs",
+				"childs": []
+			},
+			{
+				"itemName": "Users",
+				"itemIcon": "PeopleAltOutlinedIcon",
+				"itemRoute": "/app/customer_admin/users",
+				"childs": []
+			},
+			{
+				"itemName": "Knowledge",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/customer_admin/knowledge",
+				"childs": []
+			}
+		],
+		"customer_user": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_user/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_user/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_user/dashboard/historical_analysis"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/customer_user/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/customer_user/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_user/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/customer_user/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_user/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/customer_user/invoice_queries"
+					}
+				]
+			},
+			{
+				"itemName": "Product Catalogue",
+				"itemIcon": "AccountTreeOutlinedIcon",
+				"itemRoute": "/app/customer_user/product_catalogue",
+				"childs": []
+			},
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/customer_user/FAQs",
+				"childs": []
+			},
+			{
+				"itemName": "Knowledge",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/customer_user/knowledge",
+				"childs": []
+			}
+		],
+		"vendor_manager": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_manager/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_manager/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_manager/dashboard/historical_analysis"
+					},
+					{
+						"itemName": "Historical Analysis 1",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_manager/dashboard/historical_analysis1"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_manager/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_manager/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_manager/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "InvoicesIcon",
+				"itemRoute": "/app/vendor_manager/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "InvoiceListIcon",
+						"itemRoute": "/app/vendor_manager/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "InvoiceQueriesIcon",
+						"itemRoute": "/app/vendor_manager/invoice_queries"
+					}
+				]
+			},
+			
+				{
+				"itemName": "Admin",
+				"itemIcon": "InvoicesIcon",
+				"itemRoute": "/app/vendor_manager/admin",
+				"childs": [
+					{
+						"itemName": "Users Management",
+						"itemIcon": "InvoiceListIcon",
+						"itemRoute": "/app/vendor_manager/users"
+					},
+					{
+						"itemName": "Profile Management",
+						"itemIcon": "InvoiceQueriesIcon",
+						"itemRoute": "/app/vendor_manager/profile"
+					}
+				]
+			},
+			
+		
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/vendor_manager/FAQs",
+				"childs": []
+			}
+		
+			
+		],
+		"vendor_admin": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/dashboard/historical_analysis"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_admin/invoice_queries"
+					}
+				]
+			},
+			{
+				"itemName": "Receivables Management",
+				"itemIcon": "PeopleAltOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/receivables_management",
+				"childs": []
+			},
+			{
+				"itemName": "User Management",
+				"itemIcon": "PeopleAltOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/users",
+				"childs": []
+			},
+			{
+				"itemName": "Routing Details",
+				"itemIcon": "AccountBoxOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/routing_details",
+				"childs": []
+			},
+			{
+				"itemName": "Product Catalogue",
+				"itemIcon": "AccountTreeOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/product_catalogue",
+				"childs": []
+			},
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/FAQs",
+				"childs": []
+			},
+			{
+				"itemName": "Knowledge",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/vendor_admin/knowledge",
+				"childs": []
+			}
+		],
+		"vendor_user": [
+			{
+				"itemName": "Dashboard",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_user/dashboard",
+				"childs": [
+					{
+						"itemName": "Default",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_user/dashboard/default"
+					},
+					{
+						"itemName": "Historical Analysis",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_user/dashboard/historical_analysis"
+					}
+				]
+			},
+			{
+				"itemName": "Mappings",
+				"itemIcon": "PollOutlinedIcon",
+				"itemRoute": "/app/vendor_user/Mappings",
+				"childs": [
+					{
+						"itemName": "Recipient Mapping",
+						"itemIcon": "PollOutlinedIcon",
+						"itemRoute": "/app/vendor_user/mappings/recipient_mapping"
+					},
+					{
+						"itemName": "Supplier Mapping",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_user/mappings/supplier_mapping"
+					}
+				]
+			},
+			{
+				"itemName": "Invoice",
+				"itemIcon": "FileCopyOutlinedIcon",
+				"itemRoute": "/app/vendor_user/invoice",
+				"childs": [
+					{
+						"itemName": "Invoice List",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_user/invoice_list"
+					},
+					{
+						"itemName": "Invoice Queries",
+						"itemIcon": "FileCopyOutlinedIcon",
+						"itemRoute": "/app/vendor_user/invoice_queries"
+					}
+				]
+			},
+			{
+				"itemName": "Product Catalogue",
+				"itemIcon": "AccountTreeOutlinedIcon",
+				"itemRoute": "/app/vendor_user/product_catalogue",
+				"childs": []
+			},
+			{
+				"itemName": "Receivables Management",
+				"itemIcon": "PeopleAltOutlinedIcon",
+				"itemRoute": "/app/vendor_user/receivables_management",
+				"childs": []
+			},
+			{
+				"itemName": "FAQs",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/vendor_user/FAQs",
+				"childs": []
+			},
+			{
+				"itemName": "Knowledge",
+				"itemIcon": "EmojiObjectsOutlinedIcon",
+				"itemRoute": "/app/vendor_user/knowledge",
+				"childs": []
+			}
+		],
+		"common": [
+			{
+				"itemRoute": "/app/applications",
+				"itemId": "c911b316-3177-42d2-a39c-58d677d26bee",
+				"itemName": "Applications",
+				"itemIcon": "ApplicationsIcon",
+				"childs": [
+					{
+						"itemRoute": "/app/applications/todos",
+						"itemName": "Todo List",
+						"itemIcon": "ChildTodoListIcon"
+					},
+					{
+						"itemRoute": "/app/applications/chat",
+						"itemName": "Chat",
+						"itemIcon": "ChildCharIcon"
+					},
+					{
+						"itemRoute": "/app/applications/produt_catalog",
+						"itemName": "Product Catalog",
+						"itemIcon": "ChildProductCatelogIcon"
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,97 @@
+[
+	{
+		"operation": "shift",
+		"spec": {
+			"TranDtls": {
+				"TaxSch": "invoiceDetails.tax_scheme",
+				"SupTyp": "invoiceDetails.supply_type_code",
+				"EcmGstin": "invoiceDetails.ecom_gstin",
+				"IgstOnIntra": "invoiceDetails.igst_on_intra"
+			},
+			"DocDtls": {
+				"Typ": "invoiceDetails.invoice_type_code",
+				"No": "invoiceDetails.invoicenum",
+				"Dt": "invoiceDetails.invoicedate",
+				"Irn": "invoiceDetails.irn"
+			},
+			"SellerDtls": {
+				"Gstin": "invoiceSupplierBuyerDetails.billing_gstin",
+				"LglNm": "invoiceSupplierBuyerDetails.billing_legal_name",
+				"TrdNm": "invoiceSupplierBuyerDetails.billing_trade_name",
+				"Addr1": "invoiceSupplierBuyerDetails.billing_address1",
+				"Addr2": "invoiceSupplierBuyerDetails.billing_address2",
+				"Pin": "invoiceSupplierBuyerDetails.billing_pincode",
+				"Loc": "invoiceSupplierBuyerDetails.billing_location",
+				"Stcd": "invoiceSupplierBuyerDetails.billing_state",
+				"Ph": "invoiceSupplierBuyerDetails.billing_phone",
+				"Em": "invoiceSupplierBuyerDetails.billing_email"
+			},
+			"BuyerDtls": {
+				"Gstin": "invoiceSupplierBuyerDetails.supplier_gstin",
+				"LglNm": "invoiceSupplierBuyerDetails.supplier_legal_name",
+				"TrdNm": "invoiceSupplierBuyerDetails.supplier_trading_name",
+				"Addr1": "invoiceSupplierBuyerDetails.supplier_address1",
+				"Addr2": "invoiceSupplierBuyerDetails.supplier_address2",
+				"Pin": "invoiceSupplierBuyerDetails.supplier_pincode",
+				"Loc": "invoiceSupplierBuyerDetails.supplier_location",
+				"Stcd": "invoiceSupplierBuyerDetails.supplier_state",
+				"Ph": "invoiceSupplierBuyerDetails.supplier_phone",
+				"Em": "invoiceSupplierBuyerDetails.supplier_email"
+			},
+			"DispDtls": {
+				"Nm": "invoiceDispatchShiptoDetails.dispatch_company_name",
+				"Addr1": "invoiceDispatchShiptoDetails.dispatch_address1",
+				"Addr2": "invoiceDispatchShiptoDetails.dispatch_address2",
+				"Loc": "invoiceDispatchShiptoDetails.dispatch_location",
+				"Pin": "invoiceDispatchShiptoDetails.dispatch_pincode",
+				"Stcd": "invoiceDispatchShiptoDetails.dispatch_state"
+			},
+			"ShipDtls": {
+				"Gstin": "invoiceDispatchShiptoDetails.shippingto_gstin",
+				"LglNm": "invoiceDispatchShiptoDetails.shippingto_legal_name",
+				"TrdNm": "invoiceDispatchShiptoDetails.shippingto_trade_name",
+				"Addr1": "invoiceDispatchShiptoDetails.shippingto_address1",
+				"Addr2": "invoiceDispatchShiptoDetails.shippingto_address2",
+				"Loc": "invoiceDispatchShiptoDetails.shippingto_location",
+				"Pin": "invoiceDispatchShiptoDetails.shippingto_pincode",
+				"Stcd": "invoiceDispatchShiptoDetails.shippintto_state"
+			},
+			"ValDtls": {
+				"AssVal": "invoiceDetails.total_assessable_value",
+				"CgstVal": "invoiceDetails.cgstvalue",
+				"SgstVal": "invoiceDetails.sgstvalue",
+				"IgstVal": "invoiceDetails.igstvalue",
+				"CesVal": "invoiceDetails.cessvalue",
+				"StCesVal": "invoiceDetails.statecessvalue",
+				"Discount": "invoiceDetails.discount",
+				"OthChrg": "invoiceDetails.other_charges",
+				"RndOffAmt": "invoiceDetails.roundoff",
+				"TotInvVal": "invoiceDetails.total_invoice_value",
+				"TotInvValFc": "invoiceDetails.total_invoice_value_fc"
+			},
+			"PayDtls": {
+				"Nm": "invoiceSellerPaymentDetails.payee_name",
+				"AccDet": "invoiceSellerPaymentDetails.payee_financial_account",
+				"Mode": "invoiceSellerPaymentDetails.modeofpayment",
+				"FinInsBr": "invoiceSellerPaymentDetails.financial_institution_branch",
+				"PayTerm": "invoiceSellerPaymentDetails.payment_terms",
+				"PayInstr": "invoiceSellerPaymentDetails.payment_instruction",
+				"CrTrn": "invoiceSellerPaymentDetails.credit_transfer",
+				"DirDr": "invoiceSellerPaymentDetails.direct_debit",
+				"CrDay": "invoiceSellerPaymentDetails.creditdays",
+				"PaidAmt": "invoiceSellerPaymentDetails.paid_amount",
+				"PaymtDue": "invoiceSellerPaymentDetails.payment_due"
+			},
+			"EwbDtls": {
+				"TransId": "invoiceEwayBillDetails.transporter_id",
+				"TransName": "invoiceEwayBillDetails.transportername",
+				"Distance": "invoiceEwayBillDetails.transdistance",
+				"TransDocNo": "invoiceEwayBillDetails.transdocno",
+				"TransDocDt": "invoiceEwayBillDetails.transdocdate",
+				"VehNo": "invoiceEwayBillDetails.vehicleno",
+				"VehType": "invoiceEwayBillDetails.vehicle_type",
+				"TransMode": "invoiceEwayBillDetails.transmode"
+			}
+		}
+	}
+]
