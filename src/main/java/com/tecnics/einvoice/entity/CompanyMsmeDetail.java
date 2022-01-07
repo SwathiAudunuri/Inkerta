@@ -36,7 +36,7 @@ public class CompanyMsmeDetail implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="partner_id")
-	private PartnerDetail partnerDetail;
+	private PartnerDetails partnerDetail;
 
 	public CompanyMsmeDetail() {
 	}
@@ -61,7 +61,7 @@ public class CompanyMsmeDetail implements Serializable {
 		return this.msmeType;
 	}
 
-	public PartnerDetail getPartnerDetail() {
+	public PartnerDetails getPartnerDetail() {
 		return this.partnerDetail;
 	}
 
@@ -85,7 +85,7 @@ public class CompanyMsmeDetail implements Serializable {
 		this.msmeType = msmeType;
 	}
 
-	public void setPartnerDetail(PartnerDetail partnerDetail) {
+	public void setPartnerDetail(PartnerDetails partnerDetail) {
 		this.partnerDetail = partnerDetail;
 	}
 

@@ -4,7 +4,9 @@ public class PasswordResetRequest {
 
 	private String user_id;
 	
-	private String password;
+	private String newPassword;
+	
+	private String oldPassword;
 	
 	private String aliasName;
 
@@ -16,13 +18,6 @@ public class PasswordResetRequest {
 		this.user_id = user_id;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public String getAliasName() {
 		return aliasName;
@@ -32,11 +27,30 @@ public class PasswordResetRequest {
 		this.aliasName = aliasName;
 	}
 
-	public PasswordResetRequest(String user_id, String password, String aliasName) {
+	public PasswordResetRequest(String user_id, String oldPassword, String newPassword,String aliasName) {
 		super();
 		this.user_id = user_id;
-		this.password = password;
+		this.oldPassword = oldPassword;
+		this.newPassword = newPassword;
 		this.aliasName = aliasName;
+	}
+	
+	
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 	public PasswordResetRequest() {
@@ -46,7 +60,7 @@ public class PasswordResetRequest {
 
 	@Override
 	public String toString() {
-		return "PasswordResetRequest [user_id=" + user_id + ", password=" + password + ", aliasName=" + aliasName + "]";
+		return "PasswordResetRequest [user_id=" + user_id + ", old password=" + oldPassword + ", aliasName=" + aliasName + "]";
 	}
 	
 }

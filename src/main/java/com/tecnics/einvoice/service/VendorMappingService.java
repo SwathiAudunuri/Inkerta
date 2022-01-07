@@ -133,15 +133,10 @@ public class VendorMappingService extends BaseService{
 
 	public VendorMapping update(int i, VendorMapping vendorMapping) {
 		// TODO Auto-generated method stub
-//		vendorMapping.setMappingId(i);
+		vendorMapping.setMappingId(i);
 		return vendorMappingRepo.save(vendorMapping);
 	}
 
-	public VendorMapping update1(int i, VendorMapping vendorMapping) {
-		// TODO Auto-generated method stub
-//		vendorMapping.setMappingId(i);
-		return vendorMappingRepo.save(vendorMapping);
-	}
 
 
 
@@ -161,11 +156,10 @@ public class VendorMappingService extends BaseService{
 
 
 
-
-	public List<VendorMappingActivity> findByvendorMapping(int id) {
-		// TODO Auto-generated method stub
-		return VendorMappingActivityRepo.resultByMapping_id(id);
-	}
+//	public List<VendorMappingActivity> findByvendorMapping(int id) {
+//		// TODO Auto-generated method stub
+//		return VendorMappingActivityRepo.resultsmapping_id(id);
+//	}
 
 //	public List<TodoTaskActivity> findBytaskRefId(int id) {
 //		// TODO Auto-generated method stub

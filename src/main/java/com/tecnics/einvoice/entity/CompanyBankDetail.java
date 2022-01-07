@@ -36,7 +36,7 @@ public class CompanyBankDetail implements Serializable {
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="partner_id")
-	private PartnerDetail partnerDetail;
+	private PartnerDetails partnerDetail;
 
 	@Column(name="payee_name")
 	private String payeeName;
@@ -60,7 +60,7 @@ public class CompanyBankDetail implements Serializable {
 		return this.id;
 	}
 
-	public PartnerDetail getPartnerDetail() {
+	public PartnerDetails getPartnerDetail() {
 		return this.partnerDetail;
 	}
 
@@ -84,7 +84,7 @@ public class CompanyBankDetail implements Serializable {
 		this.id = id;
 	}
 
-	public void setPartnerDetail(PartnerDetail partnerDetail) {
+	public void setPartnerDetail(PartnerDetails partnerDetail) {
 		this.partnerDetail = partnerDetail;
 	}
 

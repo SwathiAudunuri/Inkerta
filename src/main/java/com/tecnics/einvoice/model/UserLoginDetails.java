@@ -6,7 +6,9 @@ public class UserLoginDetails {
 
 	private String securityToken;
 	private String userId;
+	private String userAlias;
 	private List<String> roles;
+	private List<String> partnerRoles;
 	private String email;
 	private String partnerName;
 	private String partnerId;
@@ -78,6 +80,15 @@ public class UserLoginDetails {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
+	public String getUserAlias() {
+	        return userAlias;
+	}
+
+	public void setUserAlias(String userAlias) {
+	        this.userAlias = userAlias;
+	 }
+
 
 	public List<String> getRoles() {
 		return roles;
@@ -85,6 +96,14 @@ public class UserLoginDetails {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+	
+	public List<String> getPartnerRoles() {
+		return partnerRoles;
+	}
+
+	public void setPartnerRoles(List<String> partnerRoles) {
+		this.partnerRoles = partnerRoles;
 	}
 
 	public String getEmail() {

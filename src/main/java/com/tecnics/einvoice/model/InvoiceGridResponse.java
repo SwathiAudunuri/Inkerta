@@ -12,37 +12,46 @@ public class InvoiceGridResponse {
 	private Date invoicedate;
 	private Date invoiceduedate;
 	private int creditdays;
-	
-
-
-
 	private String invoicenum;
 	private String status;
-	private String supply_type;
 	private String document_ref_id;
-	private String vendor_partner_id;
-	private String customer_partner_id;
+
 	private String company_name;
-	private String ponumber;
-	
-	public String getPonumber() {
-		return ponumber;
+
+	private String assigned_to;
+	private String invoice_currency_code;
+	private boolean is_external;
+
+	public boolean getIs_external() {
+		return is_external;
 	}
-	
-	public void setPonumber(String ponumber) {
-		this.ponumber = ponumber;
+
+	public void setIs_external(boolean is_external) {
+		this.is_external = is_external;
 	}
-	
+
+	public String getInvoice_currency_code() {
+		return invoice_currency_code;
+	}
+
+	public void setInvoice_currency_code(String invoice_currency_code) {
+		this.invoice_currency_code = invoice_currency_code;
+	}
+
+	public String getAssigned_to() {
+		return assigned_to;
+	}
+
+	public void setAssigned_to(String assigned_to) {
+		this.assigned_to = assigned_to;
+	}
+
+
 	
 	public String getCompany_name() {
 		return company_name;
 	}
-	public String getVendor_partner_id() {
-		return vendor_partner_id;
-	}
-	public String getCustomer_partner_id() {
-		return customer_partner_id;
-	}
+
 	public String getDocument_ref_id() {
 		return document_ref_id;
 	}
@@ -59,21 +68,14 @@ public class InvoiceGridResponse {
 	public String getStatus() {
 		return status;
 	}
-	public String getSupply_type() {
-		return supply_type;
-	}
+
 	public BigDecimal getTotal_invoice_value() {
 		return total_invoice_value;
 	}
 	public void setCompany_name(String company_name) {
 		this.company_name = company_name;
 	}
-	public void setVendor_partner_id(String vendor_partner_id) {
-		this.vendor_partner_id = vendor_partner_id;
-	}
-	public void setCustomer_partner_id(String customer_partner_id) {
-		this.customer_partner_id = customer_partner_id;
-	}
+
 	public void setDocument_ref_id(String document_ref_id) {
 		
 		this.document_ref_id = document_ref_id;
@@ -118,9 +120,7 @@ public class InvoiceGridResponse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public void setSupply_type(String supply_type) {
-		this.supply_type = supply_type;
-	}
+
 	public void setTotal_invoice_value(BigDecimal total_invoice_value) {
 		this.total_invoice_value = total_invoice_value;
 	}
@@ -130,8 +130,7 @@ public class InvoiceGridResponse {
 	@Override
 	public String toString() {
 		return "InvoiceGridResponse [invoice_status=" + invoice_status + ", total_invoice_value=" + total_invoice_value
-				+ ", invoicedate=" + invoicedate + ", invoicenum=" + invoicenum + ", status=" + status
-				+ ", supply_type=" + supply_type + "]";
+				+ ", invoicedate=" + invoicedate + ", invoicenum=" + invoicenum + ", status=" + status +"]";
 	}
 
 	

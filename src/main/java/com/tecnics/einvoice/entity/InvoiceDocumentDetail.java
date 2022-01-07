@@ -107,6 +107,44 @@ public class InvoiceDocumentDetail implements Serializable {
 	private String created_by;
 
 	private String last_updated_by;
+	
+	private String assigned_to;
+	
+	private Integer creditdays;
+	
+	
+
+	public Integer getCreditdays() {
+		return creditdays;
+	}
+
+
+
+
+
+
+	public void setCreditdays(Integer creditdays) {
+		this.creditdays = creditdays;
+	}
+
+
+
+
+
+
+	public String getAssigned_to() {
+		return assigned_to;
+	}
+
+
+
+
+
+
+	public void setAssigned_to(String assigned_to) {
+		this.assigned_to = assigned_to;
+	}
+
 
 	@Transient
 	private List<InvoiceDispatchShiptoDetail> invoiceDispatchShiptoDetails;

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tecnics.einvoice.Repo.InvoiceDocumentDetailRepo;
+import com.tecnics.einvoice.Repo.InvoiceStatusTrackerRepo.InvoiceStatusTrackerResults;
 import com.tecnics.einvoice.constants.Constants;
 import com.tecnics.einvoice.entity.InvoiceStatusTracker;
 import com.tecnics.einvoice.entity.InvoiceRequestModel;
@@ -78,6 +79,56 @@ public class InvoiceStatusTrackerController extends BaseController {
 					Ex.formatMessage(Ex.INV_STATUS_FETCH_ERROR.getKeyMessage()), getStackTrace(e))));
 		}
 	}
+	
+	/***
+	 * 
+	 * @param documentRefId
+	 * @param token
+	 * @return
+	 */
+	@GetMapping("invoicestatustracker/getinvoicestatusdetailsforvendor/{documentRefId}")
+	public ResponseEntity<ResponseMessage> getInvoiceStatusDetailsForVendor(@PathVariable String documentRefId,
+			@RequestHeader("authorization") String token) {
+		try {
+			UserLoginDetails userObj=getUserObjFromToken(token);
+			System.out.println("user Obj = " + userObj);
+			System.out.println("Partner ID from Obj = " + userObj.getPartnerId());
+			List<InvoiceStatusTrackerResults> response = invoiceStatusTrackerService.fetchAccessibleStatus(userObj.getPartnerId(), documentRefId);
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
+
+		} catch (Exception e) {
+			System.err.println(e);
+			log.logErrorMessage(e.getMessage(), e);
+			return ResponseEntity.ok().body(new ResponseMessage(new APIError(Ex.INV_STATUS_FETCH_ERROR.getKey(),
+					Ex.formatMessage(Ex.INV_STATUS_FETCH_ERROR.getKeyMessage()), getStackTrace(e))));
+		}
+	}
+	
+	/***
+	 * 
+	 * @param documentRefId
+	 * @param token
+	 * @return
+	 */
+	@GetMapping("invoicestatustracker/getinvoicestatusdetailsforcustomer/{documentRefId}")
+	public ResponseEntity<ResponseMessage> getInvoiceStatusDetailsForCustomer(@PathVariable String documentRefId,
+			@RequestHeader("authorization") String token) {
+		try {
+			
+			UserLoginDetails userObj=getUserObjFromToken(token);
+			System.out.println("user Obj = " + userObj);
+			System.out.println("Partner ID from Obj = " + userObj.getPartnerId());
+			
+			List<InvoiceStatusTrackerResults> response = invoiceStatusTrackerService.fetchAccessibleStatus(userObj.getPartnerId(), documentRefId);
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
+
+		} catch (Exception e) {
+			System.err.println(e);
+			log.logErrorMessage(e.getMessage(), e);
+			return ResponseEntity.ok().body(new ResponseMessage(new APIError(Ex.INV_STATUS_FETCH_ERROR.getKey(),
+					Ex.formatMessage(Ex.INV_STATUS_FETCH_ERROR.getKeyMessage()), getStackTrace(e))));
+		}
+	}
 
 	
 	/***
@@ -91,12 +142,10 @@ public class InvoiceStatusTrackerController extends BaseController {
 
 	public ResponseEntity<ResponseMessage> save(@RequestBody InvoiceStatusTracker invoiceStatusTracker,@RequestHeader("authorization") String token) 
 		{
-		System.out.println("Inside invoicestatustracker statussave ");
+
 		invoiceStatusTracker.setActionBy(getUserName(token));
-		System.out.println("Updating Invoice Status for the below data");
 		System.out.println("DocumentRefId =*" + invoiceStatusTracker.getDocumentRefId() +"*");
 		System.out.println("action =*" + invoiceStatusTracker.getAction() +"*");
-		System.out.println("action comments =*" + invoiceStatusTracker.getActionComments() +"*");
 		int cnt=invoicedetailRepo.setInvoice_statusForInvoiceDocumentDetail(invoiceStatusTracker.getAction(), invoiceStatusTracker.getDocumentRefId());
 		System.out.println("No of Rows Updated in InvoiceDocumentDetail= " + cnt);
 		invoiceStatusTracker.setActionDate(new Timestamp(System.currentTimeMillis()));

@@ -19,7 +19,14 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"/api/registrationDetails/{regId}", "/api/refresh_token", "/api/states", "/api/log_error",
 				"/api/pull/ack/{status}", "/api/otp/generate", "/api/otp/validate", "/api/isDuplicategstn/{gstn}",
 				"/api/isDuplicateemail/{email}","/api/isDuplicatephone/{primaryPhone}","/api/signup","/api/pwdreseturl/{user_id}",
-				"/api/lookup/{fieldName}","/api/lookups/{fieldName}/{moduleName}","/api/reciepientMapping","/actuator","/actuator/health","/actuator/info"};
+				"/api/lookup/{fieldName}","/api/lookups/{fieldName}/{moduleName}","/api/getfieldmasterkeys/{moduleName}/{moduleKey}",
+			//	"/api/onboarding/generatecaptchaforgstin","/api/onboarding/verifycaptcha/{captchakey}",
+				"/eInvoiceServices/api/onboarding/**","/api/onboarding/**",
+				"/api/onboarding/verifycaptchaforgstin/{captchakey}/{gstin}","/api/onboarding/generateotpforemail/{emailid}",
+				"/api/onboarding/verifyotpforemail/{otpkey}/{emailid}/{gstin}",
+				"/api/onboarding/verifyotpformobile/{otpkey}/{mobilenumber}/{gstin}","/api/onboarding/generateotpformobile/{mobilenumber}/{gstin}",
+				"/api/reciepientMapping","/actuator","/actuator/health","/actuator/info",
+				"/websocketApp", "/api/ws", "/chat", "/chat.sendMessage"};
 		http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests().antMatchers(pathArray).permitAll().anyRequest().authenticated()
 

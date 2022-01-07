@@ -31,7 +31,7 @@ public class VendorMapping {
 	private String description;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="mapping_id", unique=true, nullable=false)
 	private Integer mappingId;
 	 

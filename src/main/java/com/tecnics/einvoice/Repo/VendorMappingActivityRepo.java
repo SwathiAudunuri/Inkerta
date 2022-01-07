@@ -13,12 +13,6 @@ import com.tecnics.einvoice.entity.VendorMappingActivity;
 
 public interface VendorMappingActivityRepo extends CrudRepository<VendorMappingActivity, Integer>{
 
-
-	static List<VendorMappingActivity> resultByMapping_id(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 //	@Query("SELECT t FROM VendorMappingActivity t where t.vendorMapping =:vendorMapping")
 //	static
 //

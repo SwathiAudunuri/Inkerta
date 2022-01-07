@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -28,9 +27,6 @@ import com.tecnics.einvoice.entity.RecipientFtpMapping;
 import com.tecnics.einvoice.entity.RecipientGstinMapping;
 import com.tecnics.einvoice.entity.RecipientMapping;
 import com.tecnics.einvoice.entity.RecipientWebserviceMapping;
-import com.tecnics.einvoice.entity.VendorMapping;
-import com.tecnics.einvoice.model.CustomerInfoModel;
-import com.tecnics.einvoice.model.RecipientMappingResModel;
 import com.tecnics.einvoice.response.RecipientMappingResponse;
 
 @Component
@@ -159,33 +155,4 @@ public class RecipientMappingService extends BaseService {
 
 	}
 
-
-	
-	public List<Map<String, Object>> getrecGSTNList() {
-		// TODO Auto-generated method stub
-//		String sql= " SELECT einvoicing.recipient_mapping.recipient_id,einvoicing.recipient_gstin_mapping.gstin , einvoicing.recipient_mapping.recipient_tag ,einvoicing.recipient_mapping.delivery_mode ,einvoicing.recipient_mapping.is_active FROM einvoicing.recipient_mappingINNER join einvoicing.recipient_gstin_mapping ON einvoicing.recipient_mapping.recipient_id = einvoicing.recipient_gstin_mapping.recipient_id ";
-		List<Map<String, Object>> recgstList = jdbcTemplate.queryForList(SQLQueries.GET_RECGSTIN_DETAILS);
-//		return jdbcTemplate.queryForObject(sql,new Object[] {}, String.class);
-		return recgstList;
-
-	}
-
-//	public Map<String, Object> getrecGSTNList(String userName) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public List<RecipientMapping> getrecGSTNList() {
-//		return null;
-//	}
-		// TODO Auto-generated method stub
-		
-//		String sql= " SELECT einvoicing.recipient_mapping.recipient_id,einvoicing.recipient_gstin_mapping.gstin , einvoicing.recipient_mapping.recipient_tag ,einvoicing.recipient_mapping.delivery_mode ,einvoicing.recipient_mapping.is_active FROM einvoicing.recipient_mappingINNER join einvoicing.recipient_gstin_mapping ON einvoicing.recipient_mapping.recipient_id = einvoicing.recipient_gstin_mapping.recipient_id ";
-//		List<Map<String, Object>> recgstList = jdbcTemplate.queryForList(SQLQueries.GET_RECGSTIN_DETAILS);
-//		return jdbcTemplate.queryForObject(sql,new Object[] {}, String.class);
-//	}
-//		List<CustomerInfoModel> customers = jdbcTemplate.query(SQLQueries.GET_RECGSTIN_DETAILS, new String[] { vendorPartnerId },
-//				new BeanPropertyRowMapper<CustomerInfoModel>(CustomerInfoModel.class));
-//		return customers;
-//}
 }

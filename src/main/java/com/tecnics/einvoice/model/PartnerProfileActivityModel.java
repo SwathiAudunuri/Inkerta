@@ -1,7 +1,7 @@
 package com.tecnics.einvoice.model;
 
 import java.io.Serializable;
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 
 
 /**
@@ -19,7 +19,7 @@ public class PartnerProfileActivityModel implements Serializable {
 
 	private String partnerId;
 
-	private  PartnerDetail profileJsonDetails;
+	private  PartnerDetails profileJsonDetails;
 
 	public PartnerProfileActivityModel() {
 	}
@@ -56,11 +56,11 @@ public class PartnerProfileActivityModel implements Serializable {
 		this.partnerId = partnerId;
 	}
 
-	public PartnerDetail getProfileJsonDetails() {
+	public PartnerDetails getProfileJsonDetails() {
 		return profileJsonDetails;
 	}
 
-	public void setProfileJsonDetails(PartnerDetail profileJsonDetails) {
+	public void setProfileJsonDetails(PartnerDetails profileJsonDetails) {
 		this.profileJsonDetails = profileJsonDetails;
 	}
 

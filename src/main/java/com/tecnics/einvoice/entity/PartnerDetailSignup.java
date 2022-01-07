@@ -71,6 +71,72 @@ public class PartnerDetailSignup implements Serializable {
 	private String typeOfInvoices;
 	@Column(name = "key_product_categories")
 	private String keyProductCategories;
+	
+	@Column(name = "incorporationyear")
+	private String incorporationyear;
+	
+	@Column(name = "companysize")
+	private String companysize;
+	
+	@Column(name = "companydetails")
+	private String companydetails;
+	
+	@Column(name = "industry")
+	private String industry;
+	
+	
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getCompanydetails() {
+		return companydetails;
+	}
+
+	public void setCompanydetails(String companydetails) {
+		this.companydetails = companydetails;
+	}
+
+	public String getCompanysize() {
+		return companysize;
+	}
+
+	public void setCompanysize(String companysize) {
+		this.companysize = companysize;
+	}
+
+	public String getIncorporationyear() {
+		return incorporationyear;
+	}
+
+	public void setIncorporationyear(String incorporationyear) {
+		this.incorporationyear = incorporationyear;
+	}
+
+	@Column(name = "onboarded_on")
+	private Date onboardedOn;
+	
+	public Date getOnboardedOn() {
+		return onboardedOn;
+	}
+
+	public void setOnboardedOn(Date onboardedOn) {
+		this.onboardedOn = onboardedOn;
+	}
+
+	private String annualturnover;
+
+	public String getAnnualturnover() {
+		return annualturnover;
+	}
+
+	public void setAnnualturnover(String annualturnover) {
+		this.annualturnover = annualturnover;
+	}
 
 	public String getPaymentTerms() {
 		return paymentTerms;

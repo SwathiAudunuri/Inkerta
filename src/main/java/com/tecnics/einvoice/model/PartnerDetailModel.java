@@ -8,7 +8,7 @@ import com.tecnics.einvoice.entity.CompanyBankDetail;
 import com.tecnics.einvoice.entity.CompanyGstinDetail;
 import com.tecnics.einvoice.entity.CompanyMsmeDetail;
 import com.tecnics.einvoice.entity.ContactDetail;
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 
 
 /**
@@ -446,8 +446,8 @@ public class PartnerDetailModel {
 	 * Method returns the PartnerDetail Object with values set from request 
 	 * @return
 	 */
-	public PartnerDetail getParnerDetail() {
-		PartnerDetail partnerDetail = new PartnerDetail();
+	public PartnerDetails getParnerDetail() {
+		PartnerDetails partnerDetail = new PartnerDetails();
 		partnerDetail.setPartnerId(this.partnerId);
 		//partnerDetail.setBusinessFunction(this.businessFunction);
 		partnerDetail.setCompanyName(this.companyName);

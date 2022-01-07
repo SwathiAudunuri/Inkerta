@@ -86,6 +86,20 @@ public class BaseService extends BaseServiceImpl {
 			return false;
 
 	}
+	
+	/**
+	 * isVendor
+	 * @param userID
+	 * @return
+	 */
+	public boolean canUpload(String userID) {
+		String role=getRole(userID);
+		if (role!= null && (role.startsWith("vendor") || role.startsWith("businesspartner")))
+			return true;
+		else
+			return false;
+
+	}
 
 	/**
 	 * isCustomer

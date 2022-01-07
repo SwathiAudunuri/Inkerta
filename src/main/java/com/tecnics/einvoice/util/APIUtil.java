@@ -35,10 +35,16 @@ public class APIUtil {
 	@Autowired
 	ErrorLogRepo errorLogRepo;
 
-	public ResponseEntity<ResponseMessage> handleLogon(String userId, String encryptKey) {
+	public ResponseEntity<ResponseMessage> handleLogon(String loginid, String encryptKey) {
 		
 		
-		userId = getLoggedinUserId(userId);
+		String userId = getLoggedinUserId(loginid);
+		
+		if(userId==null)
+			return ResponseEntity.ok().body(
+					new ResponseMessage(new APIError(Ex.LOGIN_FAIL.getKey(),							
+							Ex.formatMessage(Ex.LOGIN_FAIL.getKeyMessage(), loginid))));
+			
 		
 		UserLoginDetails userDetails = new UserLoginDetails();
 
@@ -48,21 +54,34 @@ public class APIUtil {
 			errorLogRepo.save( new ErrorLog(Ex.LOGIN_FAIL.getKey(),"",Ex.LOGIN_FAIL.getKeyMessage(),"LOGIN","","Backend",userId));
 			return ResponseEntity.ok().body(
 					new ResponseMessage(new APIError(Ex.LOGIN_FAIL.getKey(),							
-							Ex.formatMessage(Ex.LOGIN_FAIL.getKeyMessage(), userId))));
+							Ex.formatMessage(Ex.LOGIN_FAIL.getKeyMessage(), loginid))));
 			}
 		
 		User user = userdao.getUser(userId);
+		System.out.println("is Partner Active" + user.isPartnerActive() + " : " + user.getCompanyName() + " " + user.getPartnerId());
+		if (!user.isPartnerActive()) {
+			logger.error(Ex.formatMessage(Ex.PARTNER_INACTIVE.getKeyMessage(), user.getCompanyName()));
+			errorLogRepo.save( new ErrorLog(Ex.PARTNER_INACTIVE.getKey(),"",Ex.PARTNER_INACTIVE.getKeyMessage(),"LOGIN","","Backend",userId));
+			return ResponseEntity.ok().body(
+					new ResponseMessage(new APIError(Ex.PARTNER_INACTIVE.getKey(),							
+							Ex.formatMessage(Ex.PARTNER_INACTIVE.getKeyMessage(), user.getCompanyName()))));
+			}
+		
+	
 		userDetails.setUserId(userId);
+		userDetails.setUserAlias(user.getUserAlias());
 		userDetails.setFirstName(user.getFirstName());
 		userDetails.setLastName(user.getLastName());
 		userDetails.setPartnerName(user.getPartnerName());
 		userDetails.setRoles(user.getRoles());
+		userDetails.setPartnerRoles(user.getPartnerRoles());
 		userDetails.setEmail(user.getEmail());
 		userDetails.setPartnerId(user.getPartnerId());
 		userDetails.setPartnerType(user.getPartnerType());
 	
 		System.out.println("Partner Type ===" + user.getPartnerType());
-
+		System.out.println("email ===" + userDetails.getEmail() + " " + userDetails.getFirstName());
+		
 		String jwtToken = jwtutil.getJWTToken(userId,userDetails);
 		String refreshToken = jwtutil.getRefreshJWTToken(userId,userDetails);
 		
@@ -102,7 +121,7 @@ public class APIUtil {
 	
 	private String getLoggedinUserId(String username) {
 
-		String loggeduserid = "";
+		String loggeduserid = null;
 
 		try {
 			loggeduserid = userdao.getUserIdDetails(username);

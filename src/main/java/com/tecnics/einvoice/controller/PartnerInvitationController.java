@@ -68,8 +68,9 @@ public class PartnerInvitationController extends BaseController {
 		String regID= segments[segments.length - 1];
 		if(response!=null) {
 			
+			
 			String folderId = alfrescoService.callcreateFolder(new FolderRequest(details.getCompanyName()));
-
+		
 			if(folderId!=null) {
 				PartnerProfileActivity obj = new PartnerProfileActivity();
 				String partnerId= partnerInvitationService.findPartnerIdByRegId(regID);

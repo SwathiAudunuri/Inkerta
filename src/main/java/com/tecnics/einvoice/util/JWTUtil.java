@@ -53,6 +53,12 @@ public class JWTUtil {
                     claim("partnerName",user.getPartnerName()).
                     claim("partnerType",user.getPartnerType()).
                     claim("roles",user.getRoles()).
+                    claim("partnerRoles",user.getPartnerRoles()).
+                    claim("userAlias",user.getUserAlias()).
+                    claim("email",user.getEmail()).
+                    claim("firstName",user.getFirstName()).
+                    claim("lastName",user.getLastName()).              
+                   
                     setIssuedAt(now).
                     setIssuer(Constants.JWT_TOKEN_ISSUER).
                     setExpiration(new Date(now.getTime() + ( Constants.JWT_TOKEN_EXPIRY_MINUTES * 60000))).
@@ -87,6 +93,11 @@ public class JWTUtil {
                     claim("partnerName",user.getPartnerName()).
                     claim("partnerType",user.getPartnerType()).
                     claim("roles",user.getRoles()).
+                    claim("partnerRoles",user.getPartnerRoles()).
+                    claim("userAlias",user.getUserAlias()).
+                    claim("email",user.getEmail()).
+                    claim("firstName",user.getFirstName()).
+                    claim("lastName",user.getLastName()).  
                     setIssuedAt(now).
                     setIssuer(Constants.JWT_TOKEN_ISSUER).
                     setExpiration(new Date(now.getTime() + ( Constants.JWT_REFRESH_TOKEN_EXPIRY_MINUTES * 60000))).
@@ -156,11 +167,11 @@ public class JWTUtil {
             .setSigningKey(signingKey)
             .build()
             .parseClaimsJws(jwtTokenString).getBody();
-    System.out.println("After claims ");
-    System.out.println("claims toString="+claims.toString());
+   // System.out.println("After claims ");
+  //  System.out.println("claims toString="+claims.toString());
     
-    System.out.println("PartnerId from claims = " + claims.get("partnerId"));
-    System.out.println("PartnerName from claims = " + claims.get("partnerName"));
+  //  System.out.println("PartnerId from claims = " + claims.get("partnerId"));
+  //  System.out.println("PartnerName from claims = " + claims.get("partnerName"));
     userObj=new UserLoginDetails();
     userObj.setPartnerId((String)claims.get("partnerId"));
     userObj.setPartnerName((String)claims.get("partnerName"));
@@ -168,15 +179,15 @@ public class JWTUtil {
     
    userObj.setRoles((List<String>) claims.get("roles"));
     userObj.setUserId((String)claims.get("name"));
+    userObj.setUserAlias((String)claims.get("userAlias"));
+    userObj.setPartnerRoles((List<String>) claims.get("partnerRoles"));
+    userObj.setEmail((String)claims.get("email"));
+    userObj.setFirstName((String)claims.get("firstName"));
+    userObj.setLastName((String)claims.get("firstName"));
     
     if(userObj==null)
   	  System.out.println("User Obj is null in getUserObjFromToken");
-    System.out.println("UsserObj = " + userObj);
-    System.out.println("User Obj toString" + userObj.toString());
-    System.out.println("User Object is retrieved from Token..Details are ");
-    System.out.println("User ID is :"+ userObj.getUserId());
-    System.out.println("User Partner ID is:" + userObj.getPartnerId());
-  
+   
     
         } catch (Exception e) {
             if( e instanceof  io.jsonwebtoken.ExpiredJwtException) {

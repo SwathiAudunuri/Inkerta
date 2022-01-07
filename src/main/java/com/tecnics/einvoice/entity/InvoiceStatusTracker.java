@@ -37,6 +37,13 @@ public class InvoiceStatusTracker implements Serializable {
 	@Column(name="action_by")
 	private String actionBy;
 	
+	@Column(name="action_to")
+	private String actionTo;
+	
+	@Column(name="visible_to_partnerid")
+	private String visibleToPartnerid;
+
+
 
 	@Column(name="action_date")
 	private Timestamp actionDate;
@@ -53,7 +60,9 @@ public class InvoiceStatusTracker implements Serializable {
 	@Column(name="source")
 	private String source;
 	
+
 	public InvoiceStatusTracker() {
+	
 	}
 
 	public Integer getInvoiceStatusTrackerId() {
@@ -102,9 +111,26 @@ public class InvoiceStatusTracker implements Serializable {
 	}
 
 	public void setActionBy(String actionBy) {
+		
 		this.actionBy = actionBy;
 	}
 	
+	public String getActionTo() {
+		return actionTo;
+	}
+
+	public void setActionTo(String actionTo) {
+		this.actionTo = actionTo;
+	}
+		
+
+	public String getVisibleToPartnerid() {
+		return visibleToPartnerid;
+	}
+
+	public void setVisibleToPartnerid(String visibleToPartnerid) {
+		this.visibleToPartnerid = visibleToPartnerid;
+	}
 	public Timestamp getActionDate() {
 		return this.actionDate;
 	}

@@ -2,7 +2,12 @@ package com.tecnics.einvoice.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -65,6 +70,19 @@ public class InvoiceQuery implements Serializable {
 	
 	@Column(name="created_by")
 	private String createdBy;
+	
+	@JsonSerialize
+	@JsonDeserialize
+	@Transient
+	private List<AttachmentDetails> attachmentDetails;
+
+	public List<AttachmentDetails> getAttachmentDetails() {
+		return attachmentDetails;
+	}
+
+	public void setAttachmentDetails(List<AttachmentDetails> attachmentDetails) {
+		this.attachmentDetails = attachmentDetails;
+	}
 
 
 	public String getDocumentRefId() {

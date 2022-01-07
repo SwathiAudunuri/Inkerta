@@ -82,6 +82,17 @@ public class InvoiceMetaDataModel {
 	private String created_by;
 
 	private String last_updated_by;
+	
+	private Integer creditdays;
+	
+
+	public Integer getCreditdays() {
+		return creditdays;
+	}
+
+	public void setCreditdays(Integer creditdays) {
+		this.creditdays = creditdays;
+	}
 
 	public String getDocument_ref_id() {
 		return document_ref_id;

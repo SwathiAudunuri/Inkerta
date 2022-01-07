@@ -29,6 +29,11 @@ public class ResponseMessage {
 		this.setResults(results);
 	}
 	
+	public ResponseMessage() {
+		super();
+		
+	}
+	
 
 	
 

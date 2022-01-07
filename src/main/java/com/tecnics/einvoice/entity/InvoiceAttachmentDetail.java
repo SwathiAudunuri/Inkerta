@@ -55,7 +55,20 @@ public class InvoiceAttachmentDetail implements Serializable {
 	
 	@Column(name = "ref_id")
 	private String refId;
+	
+	@Column(name = "doc_category")
+	private String docCategory;
 
+
+
+	public String getDocCategory() {
+		return docCategory;
+	}
+
+
+	public void setDocCategory(String docCategory) {
+		this.docCategory = docCategory;
+	}
 
 
 	public Timestamp getCreated_on() {

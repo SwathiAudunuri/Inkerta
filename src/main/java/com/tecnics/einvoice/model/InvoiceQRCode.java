@@ -34,8 +34,18 @@ public class InvoiceQRCode implements Serializable{
 
 	private String IrnDt;
 	
+	private String jwtQRCode;
 	
 	
+	
+	public String getJwtQRCode() {
+		return jwtQRCode;
+	}
+
+	public void setJwtQRCode(String jwtQRCode) {
+		this.jwtQRCode = jwtQRCode;
+	}
+
 	public InvoiceQRCode()
 	{
 		System.out.println("Here 2");

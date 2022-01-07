@@ -55,7 +55,8 @@ public class InvoiceRequestModel  {
 	public List<InvoiceAttachmentDetail> getInvoiceAttachmentDetails() {
 		return invoiceAttachmentDetails;
 	}
-
+	
+	
 
 	public InvoiceMetaDataModel getInvoiceDetails() {
 		return invoiceDetails;

@@ -15,6 +15,7 @@ import com.tecnics.einvoice.exceptions.InternalException;
 import com.tecnics.einvoice.log.BaseLogger;
 import com.tecnics.einvoice.model.ResponseMessage;
 import com.tecnics.einvoice.model.UserCredential;
+import com.tecnics.einvoice.util.APIError;
 import com.tecnics.einvoice.util.APIUtil;
 import com.tecnics.einvoice.util.HashingUtil;
 
@@ -40,6 +41,10 @@ public class LoginController extends BaseController{
 	@PostMapping(value = "/login")
 	public ResponseEntity<ResponseMessage> handleLogon(@RequestBody UserCredential user) {
 		try {
+			if((user.getUser()!=null && user.getUser().equals("")) || (user.getPassword()!=null && user.getPassword().equals("")))
+				return ResponseEntity.ok().body(new ResponseMessage(new APIError(Ex.LOGIN_USERID_PASSWORD_EMPTY.getKey(),
+									Ex.LOGIN_USERID_PASSWORD_EMPTY.getKeyMessage())));
+					
 			ResponseEntity<ResponseMessage> response = (apiUtil.handleLogon(user.getUser(), hashingUtil.encryptKey(user.getPassword())));
 			return response;
 

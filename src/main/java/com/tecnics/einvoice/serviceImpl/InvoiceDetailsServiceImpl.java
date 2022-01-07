@@ -41,6 +41,7 @@ import com.tecnics.einvoice.file.manager.CustomeResponseEntity;
 import com.tecnics.einvoice.file.manager.DocUploadRequest;
 import com.tecnics.einvoice.model.InvoiceGridResponse;
 import com.tecnics.einvoice.model.InvoiceMetaDataModel;
+import com.tecnics.einvoice.model.UserLoginDetails;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -124,8 +125,8 @@ public class InvoiceDetailsServiceImpl {
 	 * @return
 	 */
 	public List<InvoiceGridResponse> findUnpaidInvoicesByVendorPartnerId(String partnerId) {
-
-		return jdbcTemplate.query(SQLQueries.FIND_UNPAID_INV_FROM_VENDOR, new Object[] { partnerId },
+		System.out.println("** Partner Id =  " + partnerId);
+		return jdbcTemplate.query(SQLQueries.FIND_UNPAID_INV_FROM_VENDOR, new Object[] { partnerId,partnerId },
 				new BeanPropertyRowMapper(InvoiceGridResponse.class));
 	}
 	
@@ -138,9 +139,24 @@ public class InvoiceDetailsServiceImpl {
 	 */
 	public List<InvoiceGridResponse> findPaidInvoicesByVendorPartnerId(String partnerId) {
 
-		return jdbcTemplate.query(SQLQueries.FIND_PAID_INV_FROM_VENDOR, new Object[] { partnerId },
+		return jdbcTemplate.query(SQLQueries.FIND_PAID_INV_FROM_VENDOR, new Object[] { partnerId,partnerId },
 				new BeanPropertyRowMapper(InvoiceGridResponse.class));
 	}
+	
+	
+	/**
+	 * findByVendorPartnerId
+	 * 
+	 * @param partnerId
+	 * @return
+	 */
+	public List<InvoiceGridResponse> findQueriedInvoicesByVendorPartnerId(String partnerId) {
+
+		return jdbcTemplate.query(SQLQueries.FIND_QUERIED_INV_FROM_VENDOR, new Object[] { partnerId },
+				new BeanPropertyRowMapper(InvoiceGridResponse.class));
+	}
+	
+	
 	
 	/**
 	 * findByCustomerPartnerId
@@ -148,13 +164,66 @@ public class InvoiceDetailsServiceImpl {
 	 * @param partnerId
 	 * @return
 	 */
-	public List<InvoiceGridResponse> findUnpaidInvoicesByCustomerPartnerId(String partnerId) {
+	public List<InvoiceGridResponse> findUnpaidInvoicesByCustomerPartnerId(UserLoginDetails userObj) {
 		
-			return jdbcTemplate.query(SQLQueries.FIND_UNPAID_INV_FROM_CUSTOMER, new Object[] { partnerId },
+		if(userObj.getRoles().contains("customer_user") || userObj.getRoles().contains("businesspartner_user"))
+		{
+			System.out.println("Processing Customer user view");
+			return jdbcTemplate.query(SQLQueries.FIND_UNPAID_INV_FROM_CUSTOMER_FOR_USER, new Object[] { userObj.getPartnerId(),userObj.getPartnerId() },
 				new BeanPropertyRowMapper(InvoiceGridResponse.class));
+		}
+		else
+		{
+			System.out.println("Processing Customer manager view");
+			return jdbcTemplate.query(SQLQueries.FIND_UNPAID_INV_FROM_CUSTOMER_FOR_MANAGER, new Object[] { userObj.getPartnerId(),userObj.getPartnerId()  },
+					new BeanPropertyRowMapper(InvoiceGridResponse.class));
+		}
+			
 		
 		
 	}
+	
+	/**
+	 * findPaidInvoicesByCustomerPartnerId
+	 * 
+	 * @param partnerId
+	 * @return
+	 */
+	public List<InvoiceGridResponse> findPaidInvoicesByCustomerPartnerId(UserLoginDetails userObj) {
+		
+		if(userObj.getRoles().contains("customer_user"))
+		{
+			
+			return jdbcTemplate.query(SQLQueries.FIND_PAID_INV_FROM_CUSTOMER_FOR_USER, new Object[] { userObj.getPartnerId(),userObj.getPartnerId() },
+				new BeanPropertyRowMapper(InvoiceGridResponse.class));		
+		}
+		else
+			return jdbcTemplate.query(SQLQueries.FIND_PAID_INV_FROM_CUSTOMER_FOR_MANAGER, new Object[] { userObj.getPartnerId(),userObj.getPartnerId() },
+					new BeanPropertyRowMapper(InvoiceGridResponse.class));	
+			
+		
+	}
+	
+	/**
+	 * findQueriedInvoicesByCustomerPartnerId
+	 * 
+	 * @param partnerId
+	 * @return
+	 */
+	public List<InvoiceGridResponse> findQueriedInvoicesByCustomerPartnerId(UserLoginDetails userObj) {
+		
+		if(userObj.getRoles().contains("customer_user"))
+		{
+			
+		return jdbcTemplate.query(SQLQueries.FIND_QUERIED_INV_FROM_CUSTOMER_FOR_USER, new Object[] { userObj.getPartnerId() },
+			new BeanPropertyRowMapper(InvoiceGridResponse.class));		
+		}
+		else
+			return jdbcTemplate.query(SQLQueries.FIND_QUERIED_INV_FROM_CUSTOMER_FOR_MANAGER, new Object[] { userObj.getPartnerId() },
+					new BeanPropertyRowMapper(InvoiceGridResponse.class));	
+			
+	
+}
 	
 	/**
 	 * findByCustomerPartnerId
@@ -162,25 +231,35 @@ public class InvoiceDetailsServiceImpl {
 	 * @param partnerId
 	 * @return
 	 */
-	public List<InvoiceGridResponse> findPaidInvoicesByCustomerPartnerId(String partnerId) {
+	public List<InvoiceGridResponse> findExceptionInvoicesByCustomerPartnerId(UserLoginDetails userObj) {
 		
-			return jdbcTemplate.query(SQLQueries.FIND_PAID_INV_FROM_CUSTOMER, new Object[] { partnerId },
+		if(userObj.getRoles().contains("customer_user"))
+		{
+			
+			return jdbcTemplate.query(SQLQueries.FIND_EXCEPTIONS_INV_FROM_CUSTOMER_FOR_USER, new Object[] { userObj.getPartnerId() },
+				new BeanPropertyRowMapper(InvoiceGridResponse.class));		
+		}
+		else
+			return jdbcTemplate.query(SQLQueries.FIND_EXCEPTIONS_INV_FROM_CUSTOMER_FOR_MANAGER, new Object[] { userObj.getPartnerId() },
+					new BeanPropertyRowMapper(InvoiceGridResponse.class));	
+			
+		
+	}
+	
+	/**
+	 * findAssignedToMeByUserIdandCustomerPartnerId
+	 * 
+	 * @param partnerId
+	 * @return
+	 */
+	public List<InvoiceGridResponse> findAssignedToMeInvoicesByCustomerPartnerId(String partnerId,String userId) {
+		
+			return jdbcTemplate.query(SQLQueries.FIND_ASSIGNED_TO_ME_INV_FROM_CUSTOMER, new Object[] { partnerId,userId, partnerId, userId },
 				new BeanPropertyRowMapper(InvoiceGridResponse.class));		
 		
 	}
 	
-	/**
-	 * findByCustomerPartnerId
-	 * 
-	 * @param partnerId
-	 * @return
-	 */
-	public List<InvoiceGridResponse> findExceptionInvoicesByCustomerPartnerId(String partnerId) {
-		
-			return jdbcTemplate.query(SQLQueries.FIND_EXCEPTIONS_INV_FROM_CUSTOMER, new Object[] { partnerId },
-				new BeanPropertyRowMapper(InvoiceGridResponse.class));		
-		
-	}
+	
 
 	/**
 	 * getInvoiceDetails

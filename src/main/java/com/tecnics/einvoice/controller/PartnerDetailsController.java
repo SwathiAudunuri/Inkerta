@@ -10,33 +10,80 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 import com.tecnics.einvoice.entity.SignupRequestModel;
 import com.tecnics.einvoice.model.ResponseMessage;
 import com.tecnics.einvoice.model.SignupResponse;
-import com.tecnics.einvoice.service.PartnerDetailService;
+import com.tecnics.einvoice.model.UserLoginDetails;
+import com.tecnics.einvoice.service.PartnerDetailsService;
 import com.tecnics.einvoice.util.APIError;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-public class PartnerDetailController {
+public class PartnerDetailsController extends BaseController {
 
-	private PartnerDetailService partnerDetailService;
+	private PartnerDetailsService partnerDetailService;
 
 	@Autowired
-	public PartnerDetailController(PartnerDetailService thePartnerDetailService) {
+	public PartnerDetailsController(PartnerDetailsService thePartnerDetailService) {
 		partnerDetailService = thePartnerDetailService;
 	}
 
 	@GetMapping("/partnerDetail")
 	public ResponseEntity<ResponseMessage> findAll() {
-		List<PartnerDetail> response = partnerDetailService.findAll();
+		List<PartnerDetails> response = partnerDetailService.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
 	}
+	
+	@GetMapping("/partnerdetails/partners")
+	public ResponseEntity<ResponseMessage> getAllPartners(@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);
+		
+		return partnerDetailService.fetchAllPartners(userObj);
+	}
+	
+	@GetMapping("/partnerdetails/partner/{partner_id}")
+	public ResponseEntity<ResponseMessage> getPartnerDetails(@PathVariable String partner_id,@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);
+		
+		return partnerDetailService.getPartnerDetails(userObj,partner_id);
+	}
+	
+	@GetMapping("/partnerdetails/partnergstndetails")
+	public ResponseEntity<ResponseMessage> getPartnerGSTINDetails(@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);		
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(partnerDetailService.findGSTINDetailsByPartnerId(userObj.getPartnerId())));
+	}
+	
+	@GetMapping("/partnerdetails/setstatus/{partner_id}/{status}")
+	public ResponseEntity<ResponseMessage> setStatus(@PathVariable String partner_id,@PathVariable String status,@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);
+		
+		return partnerDetailService.setPartnerStatus(userObj,partner_id,status);
+	}
+	
+	@GetMapping("/partnerdetails/getdocument/{partner_id}/{docId}")
+	public ResponseEntity<ResponseMessage> getDocument(@PathVariable String partner_id,@PathVariable String docId,@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);
+		
+		return partnerDetailService.getDocument(userObj,partner_id,docId);
+	}
+	
+	
+	
+	
+	
+
 
 
 	
@@ -55,7 +102,7 @@ public class PartnerDetailController {
 	
 	@GetMapping("/partnerDetail/{partnerId}")
 	public ResponseEntity<ResponseMessage> findAll(@PathVariable String partnerId) {
-		List<PartnerDetail> response = null;
+		List<PartnerDetails> response = null;
 		try {
 			response = partnerDetailService.findByPartnerId(partnerId);
 		} catch (Exception e) {

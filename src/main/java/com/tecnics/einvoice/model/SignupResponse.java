@@ -12,6 +12,9 @@ public class SignupResponse {
 
 	private String userRole;
 	
+	private String userDisplayName;
+	private String eMail;
+	
 	private String passwordresetLink;
 
 	@Override
@@ -27,6 +30,10 @@ public class SignupResponse {
 		builder.append(alias);
 		builder.append(", userRole=");
 		builder.append(userRole);
+		builder.append(", userDisplayName=");
+		builder.append(userDisplayName);
+		builder.append(", eMail=");
+		builder.append(eMail);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -70,6 +77,24 @@ public class SignupResponse {
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
+	
+	public String getUserDisplayName() {
+		return userDisplayName;
+	}
+
+	public void setUserDisplayName(String userDisplayName) {
+		this.userDisplayName = userDisplayName;
+	}
+	
+	public String getEMail() {
+		return eMail;
+	}
+
+	public void setEMail(String eMail) {
+		this.eMail = eMail;
+	}
+	
+	
 
 	public String getPasswordresetLink() {
 		return passwordresetLink;

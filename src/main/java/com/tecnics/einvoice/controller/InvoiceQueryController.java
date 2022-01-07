@@ -42,6 +42,7 @@ import com.tecnics.einvoice.util.InvoiceQueryUtil;
 import com.fasterxml.jackson.core.json.JsonWriteFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.tecnics.einvoice.Repo.InvoiceDocumentDetailRepo;
 import com.tecnics.einvoice.dao.InvoiceQueryDAO;
 
 @CrossOrigin
@@ -53,6 +54,10 @@ public class InvoiceQueryController extends BaseController{
 	
 	@Autowired
 	InvoiceDetailsServiceImpl invoiceDetailsServiceImpl;
+	
+	
+	@Autowired
+	InvoiceDocumentDetailRepo invoicedetailRepo;
 	
 	@Autowired
 	InvoiceQueryDAO invoiceQueryDAO;
@@ -139,6 +144,7 @@ public class InvoiceQueryController extends BaseController{
 	}
 
 
+	//can be deleted
 	@GetMapping("/invoicequeries/gettreebydocument_ref_id_old/{documentRefId}")
 	public ResponseEntity<ResponseMessage> getTreeByDocument_ref_id_old(@PathVariable String documentRefId,@RequestHeader("authorization") String token) {
 		System.out.println("inside findByDocument_ref_id of invoiceQueries ***");
@@ -195,7 +201,7 @@ public class InvoiceQueryController extends BaseController{
 	
 	
 
-	
+	//can be deleted
 	
 	@GetMapping("/invoicequeries/gettreebydocument_ref_id2/{documentRefId}")
 	public ResponseEntity<ResponseMessage> getTreeByDocument_ref_id2(@PathVariable String documentRefId,@RequestHeader("authorization") String token) {
@@ -302,11 +308,19 @@ public class InvoiceQueryController extends BaseController{
 	@PostMapping("/invoicequeries/save")
 	public ResponseEntity<ResponseMessage> save(@RequestBody InvoiceQuery invoiceQuery,@RequestHeader("authorization") String token) {
 		
+		try
+		{
+			UserLoginDetails userObj=getUserObjFromToken(token);
+			System.out.println("Inside InvoiceQueryController save");
+			String qryRefId=null;
+			InvoiceRequestModel irm=null;
+		
+		
 		if(invoiceQuery.getParentQueryRefId()!=null && invoiceQuery.getParentQueryRefId().trim()!="")
 		{
 			InvoiceQueryUtil qryUtil=new InvoiceQueryUtil();
 			System.out.println("inside if 1 = ");
-			String qryRefId=qryUtil.generateQueryRefId(invoiceQueryService,invoiceQuery.getDocumentRefId(),invoiceQuery.getParentQueryRefId());
+			qryRefId=qryUtil.generateQueryRefId(invoiceQueryService,invoiceQuery.getDocumentRefId(),invoiceQuery.getParentQueryRefId());
 			invoiceQuery.setQueryRefId(qryRefId);
 		}
 		else
@@ -326,12 +340,40 @@ public class InvoiceQueryController extends BaseController{
 		System.out.println("findByparentQueryRefIf executed size="+iq1.size());
 		System.out.println("Inside invoiceQueryController Save" + invoiceQuery.toString());
 		}
-		TransactionResponse response = invoiceQueryService.save(invoiceQuery,getUserName(token));
+		TransactionResponse response = invoiceQueryService.save(invoiceQuery,userObj);
+		
+		irm=invoiceDetailsServiceImpl.getInvoiceDetails(invoiceQuery.getDocumentRefId());
+		InvoiceMetaDataModel imdm=irm.getInvoiceDetails();
+	
+		System.out.println("Setting  Query status");
+		if(userObj.getPartnerId().equals(imdm.getVendor_partner_id()))
+		{
+		int cnt=invoicedetailRepo.setInvoice_statusForInvoiceDocumentDetail("Pending", invoiceQuery.getDocumentRefId());
+		System.out.println("Query  Doc Status is set to Pending");
+		}
+		else if(userObj.getPartnerId().equals(imdm.getCustomer_partner_id()))
+		{
+			int cnt=invoicedetailRepo.setInvoice_statusForInvoiceDocumentDetail("Queried", invoiceQuery.getDocumentRefId());	
+			System.out.println("Query Doc Status is set to Queried");
+		}
+		
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
+		} catch (Exception e) {
+			System.err.println(e);
+			log.logErrorMessage(e.getMessage(), e);
+			return ResponseEntity.ok().body(new ResponseMessage(new APIError(Ex.INV_QUERY_SAVE_ERROR.getKey(),
+					Ex.formatMessage(Ex.INV_QUERY_SAVE_ERROR.getKeyMessage(),"actiondetails()"), getStackTrace(e))));
+		}
 		
 	}
 	
-	
+	@GetMapping("/invoicequeries/getdocument/{docId}")
+	public ResponseEntity<ResponseMessage> getDocument(@PathVariable String docId,@RequestHeader("authorization") String token) {
+		
+			UserLoginDetails userObj=getUserObjFromToken(token);
+		
+		return invoiceQueryService.getDocument(userObj,docId);
+	}
 
 }
 

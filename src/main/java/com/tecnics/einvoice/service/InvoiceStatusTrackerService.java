@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.tecnics.einvoice.Repo.ErrorLogRepo;
 import com.tecnics.einvoice.Repo.InvoiceStatusTrackerRepo;
+import com.tecnics.einvoice.Repo.InvoiceStatusTrackerRepo.InvoiceStatusTrackerResults;
 import com.tecnics.einvoice.entity.ErrorLog;
 import com.tecnics.einvoice.entity.InvoiceStatusTracker;
 
@@ -27,6 +28,11 @@ public class InvoiceStatusTrackerService extends BaseService {
 	public List<InvoiceStatusTracker> findByDocumentRefId(String documentRefId) {
 		return (List<InvoiceStatusTracker>) invoiceStatusTrackerRepo.findByDocumentRefId(documentRefId);
 	}
+	
+	public List<InvoiceStatusTrackerResults> fetchAccessibleStatus(String partner_id, String documentRefId) {
+		return invoiceStatusTrackerRepo.findByVisibleToPartneridAndDocumentRefId(partner_id, documentRefId);
+	}
+	
 	
 	public InvoiceStatusTracker update(InvoiceStatusTracker invoiceStatusTracker) {
 		return invoiceStatusTrackerRepo.save(invoiceStatusTracker);

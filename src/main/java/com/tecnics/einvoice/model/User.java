@@ -7,6 +7,7 @@ import java.util.List;
 public class User {
 
     private String userId;
+    private String userAlias;
     private String partnerId;
     private String firstName;
     private String securityToken;
@@ -19,17 +20,29 @@ public class User {
     private String location;
     private Date passwordRestOn;
     private String partnerName;
+   
   
 
 	private Date createdOn;
     private boolean isLocked;
-    private String authorizationKey;
+    private boolean isPartnerActive;
+ 
+
+	private String authorizationKey;
     
     
-    private String company_name;
+    private String companyName;
     private List<String> roles;
+    private List<String> partnerRoles;
     
     private String partnerType;
+    public boolean isPartnerActive() {
+ 		return isPartnerActive;
+ 	}
+
+ 	public void setPartnerActive(boolean isPartnerActive) {
+ 		this.isPartnerActive = isPartnerActive;
+ 	}
     public String getPartnerType() {
 		return partnerType;
 	}
@@ -82,6 +95,15 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    public String getUserAlias() {
+        return userAlias;
+    }
+
+    public void setUserAlias(String userAlias) {
+        this.userAlias = userAlias;
+    }
+
 
     public String getPartnerId() {
         return partnerId;
@@ -189,12 +211,22 @@ public class User {
 		this.roles = roles;
 	}
 
-	public String getCompany_name() {
-		return company_name;
+
+	public List<String> getPartnerRoles() {
+		return partnerRoles;
 	}
 
-	public void setCompany_name(String company_name) {
-		this.company_name = company_name;
+	public void setPartnerRoles(List<String> partnerRoles) {
+		this.partnerRoles = partnerRoles;
+	}
+	
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
  

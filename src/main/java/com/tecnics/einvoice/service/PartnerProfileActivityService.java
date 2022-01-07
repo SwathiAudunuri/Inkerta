@@ -15,18 +15,18 @@ import com.tecnics.einvoice.Repo.CompanyBankDetailRepo;
 import com.tecnics.einvoice.Repo.CompanyGstinDetailRepo;
 import com.tecnics.einvoice.Repo.CompanyMsmeDetailRepo;
 import com.tecnics.einvoice.Repo.ContactDetailRepo;
-import com.tecnics.einvoice.Repo.PartnerDetailRepo;
+import com.tecnics.einvoice.Repo.PartnerDetailsRepo;
 import com.tecnics.einvoice.Repo.PartnerProfileActivityRepo;
 import com.tecnics.einvoice.Repo.PartnerProfileTransactionRepo;
 import com.tecnics.einvoice.Repo.UserAuthorizationKeyRepo;
 import com.tecnics.einvoice.Repo.UserManagementRepo;
 import com.tecnics.einvoice.constants.Constants;
-import com.tecnics.einvoice.controller.PartnerDetailController;
+import com.tecnics.einvoice.controller.PartnerDetailsController;
 import com.tecnics.einvoice.entity.CompanyBankDetail;
 import com.tecnics.einvoice.entity.CompanyGstinDetail;
 import com.tecnics.einvoice.entity.CompanyMsmeDetail;
 import com.tecnics.einvoice.entity.ContactDetail;
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 import com.tecnics.einvoice.entity.PartnerProfileActivity;
 import com.tecnics.einvoice.entity.PartnerProfileTransaction;
 import com.tecnics.einvoice.entity.UserAuthorizationKey;
@@ -46,9 +46,9 @@ public class PartnerProfileActivityService {
 	PartnerProfileTransactionRepo partnerProfileTransactionRepo;
 
 	@Autowired
-	PartnerDetailController partnerDetailController;
+	PartnerDetailsController partnerDetailController;
 	@Autowired
-	PartnerDetailRepo partnerDetailRepo;
+	PartnerDetailsRepo partnerDetailRepo;
 	
 	@Autowired
 	ContactDetailRepo contactDetailRepo;
@@ -112,7 +112,7 @@ public class PartnerProfileActivityService {
 		PartnerDetailModel parnerDetailModel = new ObjectMapper().readValue(partnerProfilejsonString,
 				PartnerDetailModel.class);
 
-		PartnerDetail partnerobj = parnerDetailModel.getParnerDetail();
+		PartnerDetails partnerobj = parnerDetailModel.getParnerDetail();
 		partnerobj.setPartnerId(partnerID);
 		partnerobj = partnerDetailRepo.save(partnerobj);
 

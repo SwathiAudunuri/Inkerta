@@ -20,15 +20,18 @@ import com.tecnics.einvoice.model.User;
 	    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
 	        User user = new User();
 	        user.setUserId(resultSet.getString(1));
-	        user.setEmail(resultSet.getString(2));
-	        user.setLocation(resultSet.getString(3));
-	        List<String> roles= Arrays.asList(resultSet.getString(4).split(","));
+	        user.setUserAlias(resultSet.getString(2));
+	        user.setEmail(resultSet.getString(3));
+	        user.setLocation(resultSet.getString(4));
+	        List<String> roles= Arrays.asList(resultSet.getString(5).split(","));
 	        user.setRoles(roles);
-	        user.setFirstName(resultSet.getString(5));
-	        user.setLastName(resultSet.getString(6));
-	        user.setPartnerName(resultSet.getString(7));
-	        user.setPartnerId(resultSet.getString(8));
-	        user.setPartnerType(resultSet.getString(9));        
+	        user.setFirstName(resultSet.getString(6));
+	        user.setLastName(resultSet.getString(7));
+	        user.setPartnerName(resultSet.getString(8));
+	        user.setCompanyName(resultSet.getString(8));
+	        user.setPartnerId(resultSet.getString(9));
+	        user.setPartnerType(resultSet.getString(10)); 
+	        user.setPartnerActive(resultSet.getBoolean(11));
 	        return user;
 	    }
 	}

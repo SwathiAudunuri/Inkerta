@@ -15,6 +15,7 @@ import com.tecnics.einvoice.model.FolderResponse;
 @Component
 public class AlfrescoService {
 
+	
 	@Autowired
 	RestTemplate restTemplate;
 	
@@ -27,10 +28,14 @@ public class AlfrescoService {
 	public String callcreateFolder(FolderRequest folderRequest) {
 		FolderResponse folderId = restTemplate.postForObject("http://172.16.6.25:8080/alfresco/api/createRegistrationFolder", folderRequest,FolderResponse.class);
 		folderId.getResults(); 
-		return folderId.getFolderID();
+		return folderId.getFolderID(); 
+		
+		
 	}
+
+
 	
-	
+
 
 	public List<AlfrescoUploadResponse> addDocuments(List<AlfrescoFileUploadRequest> obj) {
 		AlfrescoFileUploadResponseList response = restTemplate.postForObject("http://172.16.6.25:8080/alfresco/api/addDocuments", obj,AlfrescoFileUploadResponseList.class);
@@ -44,6 +49,6 @@ public class AlfrescoService {
             throw new InternalException(Ex.ALFRESCO_FOLDER_CREATE.getKey(),Ex.formatMessage(Ex.ALFRESCO_FOLDER_CREATE.getKeyMessage(),new String[]{}));
 		}
 		return folderId.getFolderID();
-	}
+	} 
 	
 }

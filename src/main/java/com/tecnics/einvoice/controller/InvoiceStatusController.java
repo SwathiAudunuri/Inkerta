@@ -26,14 +26,14 @@ import com.tecnics.einvoice.entity.InvoiceRequestModel;
 import com.tecnics.einvoice.entity.InvoiceSellerPaymentInformation;
 import com.tecnics.einvoice.entity.InvoiceStatus;
 import com.tecnics.einvoice.entity.InvoiceSupplierBuyerInfo;
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 import com.tecnics.einvoice.exceptions.Ex;
 import com.tecnics.einvoice.model.InvoiceMetaDataModel;
 import com.tecnics.einvoice.model.ResponseMessage;
 import com.tecnics.einvoice.model.UserLoginDetails;
 
 import com.tecnics.einvoice.service.InvoiceStatusService;
-import com.tecnics.einvoice.service.PartnerDetailService;
+import com.tecnics.einvoice.service.PartnerDetailsService;
 import com.tecnics.einvoice.serviceImpl.InvoiceDetailsServiceImpl;
 import com.tecnics.einvoice.util.APIError;
 
@@ -115,7 +115,7 @@ public class InvoiceStatusController extends BaseController {
 			invoiceHeader.put("supplier_legal_name", isbi.getSupplier_legal_name());
 			invoiceHeader.put("invoicedate", formatter.format(imdm.getInvoicedate()));
 			invoiceHeader.put("invoiceduedate","");
-			if(invoiceDate!=null && ispi.getCreditdays().intValue()!=0)
+			if(invoiceDate!=null && (ispi.getCreditdays()!=null && ispi.getCreditdays().intValue()!=0))
 			{
 			Calendar cal = Calendar.getInstance();
 		        cal.setTime(invoiceDate);
@@ -145,6 +145,7 @@ public class InvoiceStatusController extends BaseController {
 		}
 	 catch (Exception e) {
 		System.err.println(e);
+		e.printStackTrace();
 		log.logErrorMessage(e.getMessage(), e);
 		return ResponseEntity.ok().body(new ResponseMessage(new APIError(Ex.INV_DTL_FETCH_ERROR.getKey(),
 				Ex.formatMessage(Ex.INV_DTL_FETCH_ERROR.getKeyMessage()), getStackTrace(e))));
@@ -152,4 +153,7 @@ public class InvoiceStatusController extends BaseController {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(responseValues));
 	}
+	
+
+	
 }

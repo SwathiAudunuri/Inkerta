@@ -46,13 +46,7 @@ public class RecipientMappingController extends BaseController {
 		Optional<RecipientMapping> response = recipientMappingService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
 	}
-	
-	@GetMapping("/recgstin")
-	 public ResponseEntity<ResponseMessage> findrecgstin(@RequestHeader("authorization") String token){
-		List<Map<String, Object>> response = recipientMappingService.getrecGSTNList();
-		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
-	}
-  
+
 	@PutMapping("/reciepientMapping/{id}")
 	public ResponseEntity<ResponseMessage> save(@PathVariable int id, @RequestBody RecipientMapping obj) {
 		RecipientMapping response = recipientMappingService.update(id, obj);

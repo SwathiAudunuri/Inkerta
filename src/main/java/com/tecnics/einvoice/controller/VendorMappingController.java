@@ -57,14 +57,14 @@ public class VendorMappingController extends BaseController {
 	public ResponseEntity<ResponseMessage> inActivate(@PathVariable Integer id) {
 		Optional<VendorMapping> response = vendorMappingService.findById(id);
 		response.get().setStatus(false);
-		VendorMapping response2 = vendorMappingService.update1(12, response.get());
+		VendorMapping response2 = vendorMappingService.update(12, response.get());
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response2));
 	}
 	@PutMapping("/activeVendor/{id}")
 	public ResponseEntity<ResponseMessage> activate(@PathVariable Integer id) {
 		Optional<VendorMapping> response = vendorMappingService.findById(id);
 		response.get().setStatus(true);
-		VendorMapping response2 = vendorMappingService.update1(12, response.get());
+		VendorMapping response2 = vendorMappingService.update(12, response.get());
 	return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response2));
 	}
 
@@ -105,10 +105,12 @@ public class VendorMappingController extends BaseController {
 		return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(response));
 	}
 	
-	@GetMapping("/vendorMapping/activites/{id}")
-	public List<VendorMappingActivity> findMappingActivities(@PathVariable int id){
-		return vendorMappingService.findByvendorMapping(id) ;
-	}
+	
+//	@GetMapping("/vendorMapping/activites/{id}")
+//	public List<VendorMappingActivity> findByUserId(@PathVariable int id ){
+//		
+//		return vendorMappingService.findByvendorMapping(id) ;
+//	}
 ////
 //	@PutMapping("/reciepientMapping/{id}")
 //	public ResponseEntity<ResponseMessage> save(@PathVariable int id, @RequestBody RecipientMapping obj) {

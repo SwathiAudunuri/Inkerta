@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "partner_details", schema = "einvoicing")
-public class PartnerDetail implements Serializable {
+public class PartnerDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -71,12 +71,55 @@ public class PartnerDetail implements Serializable {
 
 	private String status;
 
-	@Column(name = "type_of_invoiceOs")
+	@Column(name = "type_of_invoices")
 	private String typeOfInvoices;
+	
+	private String annualturnover;
+	
+	@Column(name = "incorporationyear")
+	private String incorporationyear;
+	
+	@Column(name = "companysize")
+	private String companysize;
+	
+	@Column(name = "companydetails")
+	private String companydetails;
+	
+	public String getCompanydetails() {
+		return companydetails;
+	}
+
+	public void setCompanydetails(String companydetails) {
+		this.companydetails = companydetails;
+	}
+
+	public String getCompanysize() {
+		return companysize;
+	}
+
+	public void setCompanysize(String companysize) {
+		this.companysize = companysize;
+	}
+
+	public String getIncorporationyear() {
+		return incorporationyear;
+	}
+
+	public void setIncorporationyear(String incorporationyear) {
+		this.incorporationyear = incorporationyear;
+	}
+
+	public String getAnnualturnover() {
+		return annualturnover;
+	}
+
+	public void setAnnualturnover(String annualturnover) {
+		this.annualturnover = annualturnover;
+	}
 
 	private String website;
 
-	public PartnerDetail() {
+	public PartnerDetails() {
 	}
 
 	public String getPartnerId() {

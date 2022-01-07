@@ -26,14 +26,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tecnics.einvoice.constants.Constants;
 import com.tecnics.einvoice.entity.InvoiceAudit;
 import com.tecnics.einvoice.entity.InvoiceRequestModel;
-import com.tecnics.einvoice.entity.PartnerDetail;
+import com.tecnics.einvoice.entity.PartnerDetails;
 import com.tecnics.einvoice.exceptions.Ex;
 
 import com.tecnics.einvoice.model.ResponseMessage;
 import com.tecnics.einvoice.model.UserLoginDetails;
 import com.tecnics.einvoice.response.TransactionResponse;
 import com.tecnics.einvoice.service.InvoiceAuditService;
-import com.tecnics.einvoice.service.PartnerDetailService;
+import com.tecnics.einvoice.service.PartnerDetailsService;
 import com.tecnics.einvoice.serviceImpl.InvoiceDetailsServiceImpl;
 import com.tecnics.einvoice.util.APIError;
 

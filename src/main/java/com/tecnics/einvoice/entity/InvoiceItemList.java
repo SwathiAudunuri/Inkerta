@@ -20,7 +20,7 @@ public class InvoiceItemList implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date batch_expiry_date;
 
-	private String batch_number;
+	private String batch_name;
 
 	private BigDecimal cgst_amt;
 
@@ -80,7 +80,7 @@ public class InvoiceItemList implements Serializable {
 	@Override
 	public String toString() {
 		return "InvoiceItemList [barcode=" + barcode + ", batch_expiry_date=" + batch_expiry_date + ", batch_number="
-				+ batch_number + ", cgst_amt=" + cgst_amt + ", comp_cess_amt_ad_valorem=" + comp_cess_amt_ad_valorem
+				+ batch_name + ", cgst_amt=" + cgst_amt + ", comp_cess_amt_ad_valorem=" + comp_cess_amt_ad_valorem
 				+ ", comp_cess_amt_non_ad_valorem=" + comp_cess_amt_non_ad_valorem + ", comp_cess_rate_ad_valorem="
 				+ comp_cess_rate_ad_valorem + ", free_qty=" + free_qty + ", gross_amount=" + gross_amount
 				+ ", gst_rate=" + gst_rate + ", hsn_code=" + hsn_code + ", igst_amt=" + igst_amt + ", is_service="
@@ -110,12 +110,12 @@ public class InvoiceItemList implements Serializable {
 		this.batch_expiry_date = batch_expiry_date;
 	}
 
-	public String getBatch_number() {
-		return batch_number;
+	public String getBatch_name() {
+		return batch_name;
 	}
 
-	public void setBatch_number(String batch_number) {
-		this.batch_number = batch_number;
+	public void setBatch_name(String batch_name) {
+		this.batch_name = batch_name;
 	}
 
 	public BigDecimal getCgst_amt() {

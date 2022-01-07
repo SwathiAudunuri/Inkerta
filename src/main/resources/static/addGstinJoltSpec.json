@@ -1,0 +1,43 @@
+[
+  {
+    "operation": "modify-overwrite-beta",
+    "spec": {
+      "nba": "=join(',',@(1,nba))"
+    }
+  }, {
+    "operation": "shift",
+    "spec": {
+      "taxpayerInfo": {
+        "ctjCd": "ctjcd",
+        "tradeNam": "tradename",
+        "gstin": "gstin",
+        "cxdt": "cxdt",
+        "rgdt": "rgdt", 
+        "ctj": "ctj",
+        "lgnm": "lgnm",
+        "sts": "sts", 
+        "lstupdt": "lstupdt",  
+        "dty": "dty",
+        "stj": "stj",
+        "stjCd": "stjcd",
+        "frequencyType": "frequencytype",
+        "ctb": "ctb",
+        "nba": "natureofbusiness_arr",
+        "panNo": "panno",   
+        "pradr": {
+          "addr": {
+            "stcd": "stcd",
+            "loc": "loc",
+            "bnm": "bnm",
+            "dst": "dst",
+            "bno": "bno",
+            "pncd": "pncd",
+            "st": "st",
+            "city": "city",
+            "flno": "flno"
+          }
+        }
+      }
+    }
+  }
+]
